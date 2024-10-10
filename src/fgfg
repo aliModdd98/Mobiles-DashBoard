@@ -1,0 +1,64 @@
+import { createTheme } from "@mui/material/styles";
+
+const getTheme = (mode) =>
+  createTheme({
+    palette: {
+      mode: isDarkMode ? "dark" : "light",
+      primary: {
+        main: "#212121",
+      },
+      secondary: {
+        main: "#757575",
+      },
+      background: {
+        default: mode === "dark" ? "#424242" : "#f5f5f5", // Dark gray for dark mode, light gray for light mode
+        paper: mode === "dark" ? "#424242" : "#ffffff", // Slightly lighter gray in dark mode, white in light mode
+      },
+      text: {
+        primary: mode === "dark" ? "#ffffff" : "#111111", // White text for dark mode, black for light mode
+        secondary: mode === "dark" ? "#bdbdbd" : "#757575", // Lighter gray for dark mode, darker gray for light
+      },
+    },
+    components: {
+      MuiButton: {
+        styleOverrides: {
+          root: {
+            width: "100%",
+            textTransform: "none",
+            borderRadius: 8,
+            backgroundColor: "#212121",
+            color: "#ffffff",
+            "&:hover": {
+              backgroundColor: "#424242f7",
+            },
+          },
+        },
+      },
+      MuiTypography: {
+        styleOverrides: {
+          root: {
+            fontFamily: "Roboto, sans-serif",
+            color: mode === "dark" ? "#ffffff" : "#111111",
+          },
+        },
+      },
+      MuiCssBaseline: {
+        styleOverrides: {
+          body: {
+            margin: 0,
+            padding: 0,
+            backgroundColor: mode === "dark" ? "#424242b1" : "#f5f5f5",
+          },
+          "*": {
+            boxSizing: "border-box",
+          },
+          a: {
+            textDecoration: "none",
+            color: "inherit",
+          },
+        },
+      },
+    },
+  });
+
+export default getTheme;
